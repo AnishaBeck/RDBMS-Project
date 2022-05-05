@@ -15,7 +15,6 @@ angular.module('myapp', [])
                 })
         }
 
-
         $scope.edit = function (editId, index) {
 
             let title = prompt("Please re-enter the title");
