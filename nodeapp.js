@@ -69,7 +69,8 @@ app.post('/add',(req,res)=>
         else
         console.log(err)
     })
-    res.sendFile(path.join(__dirname+'/homepage.html'));
+    //res.sendFile(path.join(__dirname+'/homepage.html'));
+    res.redirect('/homepage');
 })
 
 app.get('/del/:id',(req,res)=>
@@ -99,4 +100,34 @@ app.get('/edit/:id/:title',(req,res)=>
         })
         // res.sendFile(path.join(__dirname+'/homepage.html'));
     })
+    var id;
+app.get('/activities/:id', (req,res)=>
+    {
+        id=req.params.id;
+        
+        app.get('/view',(req,res)=>
+        {
+            var sql = "SELECT * from activity WHERE task_id="+id;
+            console.log(id);
+            connection.query(sql,(err,rows,fields)=>
+            {
+                if(!err)
+                    res.send(rows);
+                else
+                    console.log('Error in Displaying')
+            })  
+    })
+
+    res.sendFile(path.join(__dirname+'/activity.html'));
+})
+    // app.get('/activity/:id/view',(req,res)=>
+    // {
+    //     connection.query("SELECT * from activity WHERE task_id=?",[req.params.id],(err,rows,fields)=>
+    //     {
+    //         if(!err)
+    //             res.send(rows);
+    //         else
+    //             console.log('Error in Displaying')
+    //     })  
+    // })
 
