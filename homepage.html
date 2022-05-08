@@ -18,8 +18,16 @@
             margin: 10px;
             padding: 15px;
             background: rgb(255, 255, 255);
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
         }
-
+        /* tr.ng-scope  :hover {
+            transform: translateY(-15px);
+            box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            } */
         /* tr:nth-child(odd) {
       background: rgb(255, 255, 255);
     } */
@@ -31,6 +39,59 @@
 
         .body-center {
             margin-left: 100px;
+        }
+
+        .form{
+            padding: 10px;
+        }
+
+        .submit-btn
+        {
+            background-color: rgb(28, 28, 255);
+            border: none;
+            color: aliceblue;
+            border-radius: 5px;
+            width: 90px;
+            height: 20px;
+        }
+        .submit-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        .delete-btn{
+            background-color: rgb(234, 61, 61);
+            border: none;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover{
+            box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .edit-btn{
+            background-color: rgb(66, 31, 222);
+            border: none;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+
+        .edit-btn:hover{
+            box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        .view-btn{
+            background-color: rgb(31, 222, 31);
+            border: none;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+
+        .view-btn:hover{
+            box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+            cursor: pointer;
         }
     </style>
     <title>Document</title>
@@ -56,7 +117,7 @@
                 </a>
             </li>
             <li>
-                <a href="\index.html">
+                <a href="#">
                     <span class="icon"><i class="fas fa-home"></i></span>
                     <span class="title">Home</span>
                 </a>
@@ -68,19 +129,31 @@
                 </a>
             </li>
             <li>
-                <a href="\form.html">
+                <a href="#">
                     <span class="icon"><i class="fas fa-envelope"></i></span>
-                    <span class="title">Task Board</span>
+                    <span class="title">Messages</span>
                 </a>
             </li>
             <li>
-                <a href="\kanban\kanban.html">
+                <a href="#">
                     <span class="icon"><i class="fas fa-info"></i></span>
-                    <span class="title">Kanban Board</span>
+                    <span class="title">Help</span>
                 </a>
             </li>
             <li>
-                <a href="\index.html">
+                <a href="#">
+                    <span class="icon"><i class="fas fa-cog"></i></span>
+                    <span class="title">Setting</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-lock"></i></span>
+                    <span class="title">Password</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
                     <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                     <span class="title">Sign Out</span>
                 </a>
@@ -92,11 +165,12 @@
     </div> -->
     <div class="body-center">
         <center>
-            <form method="POST" action="/add">
+            <form method="POST" action="/add" class="form">
                 Enter task title:<input type="text" name="title" />
-                <input type="submit" />
+                <input class="submit-btn" type="submit" />
             </form>
-            <h1> Tasks</h1>
+            <h2 style="padding: 3px;"> Tasks List</h2>
+
         </center>
 
         <table>
@@ -112,9 +186,9 @@
                 <td>Progress :{{item.progress}}</td>
                 <td>Start Date :{{item.startdate}}</td>
                 <td>
-                    <button ng-click="delete(item.task_id)">Delete</button> 
-                    <button ng-click="edit(item.task_id)">Edit</button> 
-                    <button ng-click="activity(item.task_id)">view</button>
+                    <button class="delete-btn" ng-click="delete(item.task_id)">Delete</button> 
+                    <button class="edit-btn" ng-click="edit(item.task_id)">Edit</button> 
+                    <button class="view-btn"ng-click="activity(item.task_id)">view</button>
                 </td>
 
             </tr>

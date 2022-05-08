@@ -100,7 +100,9 @@ app.get('/edit/:id/:title',(req,res)=>
         })
         // res.sendFile(path.join(__dirname+'/homepage.html'));
     })
-    var id;
+
+//for each individual tasks    
+var id;
 app.get('/activities/:id', (req,res)=>
     {
         id=req.params.id;
@@ -115,7 +117,50 @@ app.get('/activities/:id', (req,res)=>
                     res.send(rows);
                 else
                     console.log('Error in Displaying')
-            })  
+        })  
+        app.get('/delact/:id',(req,res)=>
+        {
+            console.log(req.params.id)
+            connection.query('DELETE FROM activity WHERE task_id=? and activity_id=?',[id,req.params.id],(err,rows,fields)=>
+            {
+                if(!err)
+                // console.log("DATA deleted");
+                res.send(rows)
+                else
+                console.log("error");
+            })
+            // res.sendFile(path.join(__dirname+'/homepage.html'));
+        })
+        app.get('/editact/:id/:name/:wid',(req,res)=>
+        {
+            //console.log(req.params.title)
+            connection.query('UPDATE activity SET name=?, workflow_id=? WHERE task_id=? and activity_id=?',[req.params.name,req.params.wid,id,req.params.id],(err,rows,fields)=>
+            {
+                if(!err)
+                //console.log("DATA updated");
+                res.send(rows)
+                else
+                console.log("error");
+            })
+            // res.sendFile(path.join(__dirname+'/homepage.html'));
+        })
+        app.post('/addact',(req,res)=>
+        {
+            var name = req.body.name;
+            var edoc = req.body.edoc;
+            var wid = req.body.wid;
+            var stat=0;
+            var sql = `INSERT INTO activity(task_id, name, EDOC, status,workflow_id) VALUES(${id}, "${name}","${edoc}",${stat},${wid})`;
+            //console.log(sql)
+            connection.query(sql,(err,rows,fields)=>
+            {
+                if(!err)
+                console.log('Data has been inserted successfully...!');
+                else
+                console.log(err)
+            })
+            res.redirect('/activities/'+id);
+        })
     })
 
     res.sendFile(path.join(__dirname+'/activity.html'));
