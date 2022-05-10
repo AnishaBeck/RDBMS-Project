@@ -143,6 +143,7 @@
   float: left;
     padding: 16px 24px;
     background: #ffffff;
+    margin: auto;
      /* display: flex;
     flex-direction: column;  */
     height: 350px;

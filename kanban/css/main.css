@@ -382,9 +382,10 @@ nav {
   
 .kanban {
 	display: flex;
+  margin: auto;
 	padding: 30px;
 	width: 750px;
-	background: #8ac6ca;
+	background: #4e72ea;
 	border-radius: 5px;
 }
 
