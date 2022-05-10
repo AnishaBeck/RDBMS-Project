@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         tr {
             margin-block-start: 100px;
@@ -23,6 +27,7 @@
             transition: all 0.3s ease-in-out;
             border-radius: 5px;
         }
+
         /* tr.ng-scope  :hover {
             transform: translateY(-15px);
             box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
@@ -41,12 +46,11 @@
             margin-left: 100px;
         }
 
-        .form{
+        .form {
             padding: 10px;
         }
 
-        .submit-btn
-        {
+        .submit-btn {
             background-color: rgb(28, 28, 255);
             border: none;
             color: aliceblue;
@@ -54,42 +58,45 @@
             width: 90px;
             height: 20px;
         }
-        .submit-btn:hover{
+
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
-        .delete-btn{
+
+        .delete-btn {
             background-color: rgb(234, 61, 61);
             border: none;
             color: aliceblue;
             border-radius: 5px;
         }
 
-        .delete-btn:hover{
+        .delete-btn:hover {
             box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
 
-        .edit-btn{
+        .edit-btn {
             background-color: rgb(66, 31, 222);
             border: none;
             color: aliceblue;
             border-radius: 5px;
         }
 
-        .edit-btn:hover{
+        .edit-btn:hover {
             box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
-        .view-btn{
+
+        .view-btn {
             background-color: rgb(31, 222, 31);
             border: none;
             color: aliceblue;
             border-radius: 5px;
         }
 
-        .view-btn:hover{
+        .view-btn:hover {
             box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
@@ -183,12 +190,14 @@
             <tr ng-repeat="item in table">
                 <td>Task ID:{{item.task_id}}</td>
                 <td>Title :{{item.title}}</td>
-                <td>Progress :{{item.progress}}</td>
+                <td>Progress :<div class="progress">
+                    <div class="progress-bar" role="progressbar" ng-attr-style="width:{{item.progress}}%"  aria-valuenow="{{item.progress}}" aria-valuemin="0" aria-valuemax="100">{{item.progress}}%</div>
+                  </div></td>
                 <td>Start Date :{{item.startdate}}</td>
                 <td>
-                    <button class="delete-btn" ng-click="delete(item.task_id)">Delete</button> 
-                    <button class="edit-btn" ng-click="edit(item.task_id)">Edit</button> 
-                    <button class="view-btn"ng-click="activity(item.task_id)">view</button>
+                    <button class="delete-btn" ng-click="delete(item.task_id)">Delete</button>
+                    <button class="edit-btn" ng-click="edit(item.task_id)">Edit</button>
+                    <button class="view-btn" ng-click="activity(item.task_id)">view</button>
                 </td>
 
             </tr>

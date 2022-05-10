@@ -110,7 +110,7 @@ app.get('/activities/:id', (req,res)=>
         app.get('/view',(req,res)=>
         {
             var sql = "SELECT * from activity WHERE task_id="+id;
-            console.log(id);
+            //console.log(id);
             connection.query(sql,(err,rows,fields)=>
             {
                 if(!err)
@@ -161,6 +161,46 @@ app.get('/activities/:id', (req,res)=>
             })
             res.redirect('/activities/'+id);
         })
+
+        app.get('/completeact/:id/:s',(req,res)=>{
+            var stat;
+            if(req.params.s==1)
+            stat=0;
+            else
+            stat=1;
+            connection.query('UPDATE activity SET status=? WHERE task_id=? and activity_id=?',[stat,id,req.params.id],(err,rows,fields)=>
+            {
+                //console.log(rows);
+                if(!err)
+                {
+                    //console.log("A")
+                    
+                res.send(rows)
+                }
+                
+                else
+                console.log("error");
+            })
+            //res.redirect('/activities/'+id);
+        })
+
+        app.get('/updatepercentage/:val',(req,res)=>{
+            connection.query('UPDATE tasks SET progress=? WHERE task_id=?',[req.params.val,id],(err,rows,fields)=>
+            {
+                //console.log(rows);
+                if(!err)
+                {
+                    console.log("A")
+                    
+                res.send(rows)
+                }
+                
+                else
+                console.log("error");
+            })
+        })
+
+        
     })
 
     res.sendFile(path.join(__dirname+'/activity.html'));

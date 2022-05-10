@@ -247,6 +247,7 @@
                     <th>status</th>
                     <th>Workflow ID<br></th>
                     <th>Actions</th>
+                    <th>Completion</th>
                 </tr>
             </thead>
             <tbody>
@@ -257,12 +258,13 @@
                     <td>{{item.EDOC}}</td>
                     <td>{{item.status}}</td>
                     <td>{{item.workflow_id}}</td> 
+                   
                     <td>
                         <button class="delete-btn" ng-click="delete(item.activity_id)">Delete</button>
                         <button class="edit-btn" ng-click="edit(item.activity_id)">Edit</button>
                         <!-- <button ng-click="activity(item.task_id)">view</button> -->
-                    </td>
-
+                    </td>   
+                    <td><input type="checkbox" name="stat" ng-click="status(item.activity_id,item.status)" ng-checked="item.status==1"/></td>
                 </tr>
             </tbody>
         </table>
