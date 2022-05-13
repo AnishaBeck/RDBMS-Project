@@ -10,6 +10,10 @@ export default class Column {
 		this.elements.root = Column.createRoot();
 		this.elements.title = this.elements.root.querySelector(".kanban__column-title");
 		this.elements.items = this.elements.root.querySelector(".kanban__column-items");
+
+		
+		var data = Column.test1()
+		
 		// this.elements.addItem = this.elements.root.querySelector(".kanban__add-item");
 
 		this.elements.root.dataset.id = id;
@@ -44,5 +48,18 @@ export default class Column {
 		const item = new Item(data.id, data.content);
 
 		this.elements.items.appendChild(item.elements.root);
+	}
+
+	static async test1(){
+		try{
+			var data  = await fetch('http://localhost:8000/test1')
+			if(data.ok){
+				var x = await data.json()
+				console.log(x);
+				return x
+			}
+		}catch(err){
+			console.log(err);
+		}
 	}
 }

@@ -35,7 +35,7 @@ app.listen(port,()=>
 )
 
 app.get('/test1', (req, res) => {
-    connection.query('select * from activity', (err, data) => {
+    connection.query('select * from user', (err, data) => {
         if(!err){
             return res.json(data)
         }
@@ -44,3 +44,4 @@ app.get('/test1', (req, res) => {
         }
     })
 })
+
