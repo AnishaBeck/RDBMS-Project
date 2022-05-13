@@ -42,16 +42,7 @@ app.get('/getjson',(req,res)=>
         console.log('Error in Displaying')
     })
 })
-app.get('/test1', (req, res) =>{
-    connection.query('select * from activity', (err, data) => {
-        if(!err){
-            res.json(data)
-        }
-        else{
-            console.log(err);
-        }
-    })
-})
+
 app.get('/',(req,res)=>
 {
     //res.sendFile(__dirname +"/index.html");

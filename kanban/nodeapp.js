@@ -34,8 +34,10 @@ app.listen(port,()=>
 }
 )
 
+
+//fetching data from activity table
 app.get('/test1', (req, res) => {
-    connection.query('select * from user', (err, data) => {
+    connection.query('select * from user', (err, data) => { //it should use activity table
         if(!err){
             return res.json(data)
         }

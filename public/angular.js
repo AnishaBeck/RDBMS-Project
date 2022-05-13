@@ -32,7 +32,6 @@ angular.module('myapp', [])
             
         }
 
-
         $scope.activity= function(viewid){
             $window.location.href = '/activities/'+viewid;
      }
