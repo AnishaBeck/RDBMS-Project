@@ -124,7 +124,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/homepage">
                     <span class="icon"><i class="fas fa-home"></i></span>
                     <span class="title">Home</span>
                 </a>
@@ -142,7 +142,7 @@
                 </a>
             </li>
             <li>
-                <a href="/kanban">
+                <a href="#">
                     <span class="icon"><i class="fas fa-info"></i></span>
                     <span class="title">Kanban Board</span>
                 </a>
@@ -170,41 +170,10 @@
     <!-- <div class="sidebar">
         hello world
     </div> -->
-    <div class="body-center">
-        <center>
-            <form method="POST" action="/add" class="form">
-                Enter task title:<input type="text" name="title" required />
-                <input class="submit-btn" type="submit" />
-            </form>
-            <h2 style="padding: 3px;"> Tasks List</h2>
 
-        </center>
-
-        <table>
-            <!-- <tr>
-                    <th >Task ID<br></th>
-                    <th >Title</th>
-                    <th >Progress</th>
-                    <th >Start Date<br></th>
-                </tr> -->
-            <tr ng-repeat="item in table">
-                <td>Task ID:{{item.task_id}}</td>
-                <td>Title :{{item.title}}</td>
-                <td>Progress :<div class="progress">
-                    <div class="progress-bar" role="progressbar" ng-attr-style="width:{{item.progress}}%"  aria-valuenow="{{item.progress}}" aria-valuemin="0" aria-valuemax="100">{{item.progress}}%</div>
-                  </div></td>
-                <td>Start Date :{{item.startdate}}</td>
-                <td>
-                    <button class="delete-btn" ng-click="delete(item.task_id)">Delete</button>
-                    <button class="edit-btn" ng-click="edit(item.task_id)">Edit</button>
-                    <button class="view-btn" ng-click="activity(item.task_id)">view</button>
-                </td>
-
-            </tr>
-        </table>
-
-
-    </div>
+    <div class="kanban">
+		
+	</div>
     <script>
         var getSidebar = document.querySelector('.sidebar');
         var getToggle = document.getElementsByClassName('toggle');
@@ -215,6 +184,7 @@
             });
         }
     </script>
+    <script src="js/main.js" type="module"></script>
     <script src="angular.js"></script>
 </body>
 

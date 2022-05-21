@@ -1,6 +1,6 @@
 const mysql=require('mysql2')
 const express=require('express')
-const port =7500;
+const port =5000;
 const app=express();
 const path=require('path');
 const bodyParser=require('body-parser');
@@ -42,10 +42,11 @@ app.get('/getjson',(req,res)=>
         console.log('Error in Displaying')
     })
 })
-
 app.get('/',(req,res)=>
 {
     //res.sendFile(__dirname +"/index.html");
+
+
     res.sendFile(path.join(__dirname+'/index.html'));
 })
 
@@ -53,6 +54,11 @@ app.get('/homepage',(req,res)=>
 {
     //res.sendFile(__dirname +"/index.html");
     res.sendFile(path.join(__dirname+'/homepage.html'));
+})
+app.get('/kanban',(req,res)=>
+{
+    //res.sendFile(__dirname +"/index.html");
+    res.sendFile(path.join(__dirname+'/kanban.html'));
 })
 app.post('/add',(req,res)=>
 {
@@ -217,3 +223,50 @@ app.get('/activities/:id', (req,res)=>
     //     })  
     // })
 
+///google auth
+
+const session = require("express-session");
+
+const passport = require('passport');
+
+require('./auth');
+
+function isLoggedIn(req, res, next) {
+    req.user ? next() : res.sendStatus(401);
+}
+
+app.use(session({ secret: 'cats' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.get('/', (req, res) => {
+//     
+//res.send('<a href="/auth/google">Signin</a>')
+// });
+
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/homepage',
+        failureRedirect: '/auth/failure',
+    })
+);
+
+app.get('/auth/failure', (req, res) => {
+    res.send('Something went wrong');
+});
+
+app.get('/protected', isLoggedIn, (req, res) => {
+    //  res.send(`Hello ${req.user.displayName}`);
+    res.sendFile(path.join(__dirname+'/index.html'));
+});
+
+app.get('/logout', (req, res) => {
+    res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
+    req.logOut();
+     res.clearCookie('connect.sid', { path: '/' });
+     res.redirect('/')
+})
