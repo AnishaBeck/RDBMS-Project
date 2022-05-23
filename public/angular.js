@@ -29,6 +29,9 @@ angular.module('myapp', [])
                         })
                 })
             }
+            else{
+                alert("Title cannot be null!!");
+            }
             
         }
 

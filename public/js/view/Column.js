@@ -6,8 +6,11 @@ export default class Column {
 	constructor(id, title) {
 		const topDropZone = DropZone.createDropZone();
 
-		var data = Column.test1() //data from the database save in a variable
-		console.log(data)
+		// var data = Column.test1() //data from the database save in a variable
+		// console.log(data.resolve)
+		
+ 
+		
 		this.elements = {};
 		this.elements.root = Column.createRoot();
 		this.elements.title = this.elements.root.querySelector(".kanban__column-title");
@@ -23,16 +26,14 @@ export default class Column {
 
 			this.renderItem(newItem);
 		});
-
+		
+		
 		KanbanAPI.getItems(id).forEach(item => {
+			console.log(item.content)
 			this.renderItem(item);
 		});
-
-		for(var item in data)
-		{
-			console.log("A");
-			console.log(item);
-		}
+		
+		
 	}
 
 	static createRoot() {
@@ -71,3 +72,4 @@ export default class Column {
 		}
 	}
 }
+
